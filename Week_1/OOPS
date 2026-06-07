@@ -1,0 +1,70 @@
+from abc import ABC, abstractmethod
+
+class LibraryUser(ABC):
+    @abstractmethod
+    def registerAccount(self):
+        pass
+
+    @abstractmethod
+    def requestBook(self):
+        pass
+
+class KidUser(LibraryUser):
+    def __init__(self):
+        self.age = 0
+        self.bookType = ""
+
+    def registerAccount(self):
+        if self.age < 12:
+            print("You have successfully registered under a Kids Account")
+        else:
+            print("Sorry, Age must be less than 12 to register as a kid")
+
+    def requestBook(self):
+        if self.bookType.lower() == "kids":
+            print("Book Issued successfully, please return the book within 10 days")
+        else:
+            print("Oops, you are allowed to take only kids books")
+
+class AdultUser(LibraryUser):
+    def __init__(self):
+        self.age = 0
+        self.bookType = ""
+
+    def registerAccount(self):
+        if self.age > 12:
+            print("You have successfully registered under an Adult Account")
+        else:
+            print("Sorry, Age must be greater than 12 to register as an adult")
+
+    def requestBook(self):
+        if self.bookType.lower() == "fiction":
+            print("Book Issued successfully, please return the book within 7 days")
+        else:
+            print("Oops, you are allowed to take only adult Fiction books")
+
+kid = KidUser()
+kid.age = 10
+kid.registerAccount()
+
+kid.age = 18
+kid.registerAccount()
+
+kid.bookType = "Kids"
+kid.requestBook()
+
+kid.bookType = "Fiction"
+kid.requestBook()
+
+adult = AdultUser()
+adult.age = 5
+adult.registerAccount()
+
+adult.age = 23
+adult.registerAccount()
+
+adult.bookType = "Kids"
+adult.requestBook()
+
+adult.bookType = "Fiction"
+adult.requestBook()
